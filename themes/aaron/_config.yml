@@ -152,7 +152,7 @@ sidebar:
   #  - hide    expand only when click on the sidebar toggle icon.
   #  - remove  Totally remove sidebar including sidebar toggle.
   display: post
-  #display: always
+#   display: always
   #display: hide
   #display: remove
 
@@ -161,10 +161,10 @@ sidebar:
   offset_float: 12
 
   # Back to top in sidebar
-  b2t: false
+  b2t: true
 
   # Scroll percent label in b2t button
-  scrollpercent: false
+  scrollpercent: true
 
   # Enable sidebar on narrow view
   onmobile: false
@@ -246,7 +246,7 @@ custom_logo:
 # Available value:
 #    normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: night
+highlight_theme: night eighties
 
 
 # ---------------------------------------------------------------

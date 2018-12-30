@@ -11,26 +11,25 @@ tags:
 
 ## Vscode代码高亮设置
 我们公司前端使用的IDE是Vscode，首先要设置代码高亮，对于`.wpy`文件，设置方法如下：
-> 1. 在 Code 里先安装 Vue 的语法高亮插件 `Vetur`。
-> 2. 把.wpy 关联的语言模式选择为 Vue。
-> 3. 因为wepy有自己的标签和像素单位， `Vetur`会根据vue的规则当成错误来提示，mac下使用快捷键 `⌘ ,`，打开工作区设置，粘贴下面的规则，把Vue的`template`和`style`校验关掉
-
+1.在 Code 里先安装 Vue 的语法高亮插件 `Vetur`。
+2.把.wpy 关联的语言模式选择为 Vue。
+3.因为wepy有自己的标签和像素单位， `Vetur`会根据vue的规则当成错误来提示，mac下使用快捷键 `⌘ ,`，打开工作区设置，粘贴下面的规则，把Vue的`template`和`style`校验关掉
 ```json
 {
   "vetur.validation.style": false,
   "vetur.validation.template": false
 }
 ```
-
 另外`.wxs`文件直接关联为`js`，如果是使用原生小程序开发，`.wxml`文件关联为`html`，`wxss`文件关联为`css`
 
-## 微信开发者工具配置
-> 1.使用微信开发者工具新建项目，本地开发选择dist目录
-> 2.微信开发者工具--> 项目 --> 项目设置中，取消勾选ES6 转 ES5，上传代码时样式自动补全，代码上传时自动压缩
-> 3.微信开发者工具--> 项目 --> 项目设置中，勾选不校验合法域名、web-view（业务域名）、TLS 版本以及 HTTPS 证书
-> 4.开发过程中，可以通过自定义编译，自定义场景值快速进入到某个页面开发
 
+## 微信开发者工具配置
+1.使用微信开发者工具新建项目，本地开发选择dist目录
+2.微信开发者工具--> 项目 --> 项目设置中，取消勾选ES6 转 ES5，上传代码时样式自动补全，代码上传时自动压缩
+3.微信开发者工具--> 项目 --> 项目设置中，勾选不校验合法域名、web-view（业务域名）、TLS 版本以及 HTTPS 证书
+4.开发过程中，可以通过自定义编译，自定义场景值快速进入到某个页面开发
 <img src="https://cdn.meishakeji.com/frontend-blog/img/wepy-quick-start@01.png" width="500"/>
+
 
 ## 启动项目及项目结构
 ```
@@ -39,7 +38,6 @@ wepy init standard myproject
 cd myproject
 wepy build --watch
 ```
-
 项目目录结构
 ```
 ├── dist                   小程序运行代码目录（该目录由WePY的build指令自动编译生成，请不要直接修改该目录下的文件）
@@ -55,15 +53,13 @@ wepy build --watch
 └── package.json           项目的package配置
 ```
 
+
 ## wepy与小程序不一样的地方
-- 框架在`app.wpy`的`constructor`中使用中间件`this.use('promisify');`，可以对小程序提供的API全都进行`Promise`化，比如`wx.login()`可以直接写成`wepy.login()`就返回了一个Promise：`wepy.login().then(()=>{}).catch(err=>{})`
-- 框架在app.wpy的`constructor`中使用中间件`this.use('requestfix');`，可以修复小程序请求最大并发数为5的问题
-- 事件绑定语法使用优化语法代替
-    - 原 `bindtap="click"` 替换为 `@tap="click"`，原 `catchtap="click"` 替换为 @tap.stop="click"
-    - 原 `capture-bind:tap="click"` 替换为 @tap.capture="click"，原`capture-catch:tap="click"`替换为 @tap.capture.stop="click"
-- 事件传参使用优化后语法代替。 
-    - 原`bindtap="click" data-index={ {index} }`替换为 `@tap="click({ {index} })"`
-- 数据绑定不用通过`setData`方法，可以直接赋值，但是在异步函数中更新数据的时，必须手动调用`$apply`方法，才会触发脏数据检查流程的运行
+1.框架在`app.wpy`的`constructor`中使用中间件`this.use('promisify');`，可以对小程序提供的API全都进行`Promise`化，比如`wx.login()`可以直接写成`wepy.login()`就返回了一个Promise：`wepy.login().then(()=>{}).catch(err=>{})`
+2.框架在app.wpy的`constructor`中使用中间件`this.use('requestfix');`，可以修复小程序请求最大并发数为5的问题
+3.事件绑定语法使用优化语法代替。原`bindtap="click"`替换为`@tap="click"`，原`catchtap="click"`替换为@tap.stop="click"。原`capture-bind:tap="click"`替换为@tap.capture="click"，原`capture-catch:tap="click"`替换为@tap.capture.stop="click"
+4.事件传参使用优化后语法代替。原`bindtap="click" data-index={ {index} }`替换为`@tap="click({ {index} })"`
+5.数据绑定不用通过`setData`方法，可以直接赋值，但是在异步函数中更新数据的时，必须手动调用`$apply`方法，才会触发脏数据检查流程的运行
 ```js
 // 在原生小程序中
 this.setData({title: 'this is title'});
@@ -78,8 +74,9 @@ setTimeout(() => {
 }, 3000);
 ```
 
+
 ## wepy与vue不一样的地方
-- wepy中的`methods`属性只能声明页面`wxml`标签的`bind、catch`事件，不能声明自定义方法，这与Vue中的用法是不一致的，自定义的方法应该在`methods`对象外声明，与`methods`平级
+1.wepy中的`methods`属性只能声明页面`wxml`标签的`bind、catch`事件，不能声明自定义方法，这与Vue中的用法是不一致的，自定义的方法应该在`methods`对象外声明，与`methods`平级
 ```javascript
 export default class MyComponent extends wepy.component {
     // methods对象只能声明页面`wxml`标签的`bind、catch`事件
@@ -91,7 +88,7 @@ export default class MyComponent extends wepy.component {
     customFunction () {}
 }
 ```
-- 静态组件问题：WePY中的组件都是静态组件，是以组件ID作为唯一标识的，每一个ID都对应一个组件实例，当页面引入两个相同ID的组件时，这两个组件共用同一个实例与数据，当其中一个组件数据变化时，另外一个也会一起变化，如果需要避免这个问题，则需要分配多个组件ID和实例
+2.静态组件问题：WePY中的组件都是静态组件，是以组件ID作为唯一标识的，每一个ID都对应一个组件实例，当页面引入两个相同ID的组件时，这两个组件共用同一个实例与数据，当其中一个组件数据变化时，另外一个也会一起变化，如果需要避免这个问题，则需要分配多个组件ID和实例
 ```html
 <template>
     <view class="child1">
@@ -116,7 +113,7 @@ export default class MyComponent extends wepy.component {
     }
 </script>
 ```
-- 组件循环渲染，必须使用wpy的辅助标签`<repeat>`
+3.组件循环渲染，必须使用wpy的辅助标签`<repeat>`
 ```html
 <template>
     <!-- 注意，使用for属性，而不是使用wx:for属性 -->
@@ -126,7 +123,7 @@ export default class MyComponent extends wepy.component {
     </repeat>
 </template>
 ```
-- wxs 目前主要是增强 `wxml` 标签的表达能力，可以使用wxs替代vue中的`filters`
+4.wxs 目前主要是增强 `wxml` 标签的表达能力，可以使用wxs替代vue中的`filters`
     - wxs必须是外链文件。并且后缀为`.wxs`。
     - wxs引入后只能在`template`中使用，不能在`script`中使用
 
@@ -148,7 +145,6 @@ module.exports = {
 ```javascript
 import wepy from 'wepy';
 import utils from '@/wxs/utils.wxs';
-
 export default class Text extends wepy.component {
   data = {
     sex: 1
@@ -159,23 +155,22 @@ export default class Text extends wepy.component {
   };
 }
 ```
-## 常用的小程序组件的一些tip
 
-> 1. `textarea、map、canvas、video` 这四个组件是客户端的原生组件，层级最高，不能通过z-index控制层级
-> 2. `scroll-view`中不能使用滚动无法触发无法触发 `onPullDownRefresh` 事件，`scroll-view`中也不能使用1中的四个客户端原生组件
-> 3. 除了文本节点`<text>`以外的其他节点都无法长按选中
-> 4. 如果需要发送[模板消息](https://developers.weixin.qq.com/miniprogram/dev/api/notice.html)，需要在form表单中设置`report-submit`属性为true，收集`formId`
-> 5. input组件是native组件，字体是系统字体，无法设置 `font-family`
+
+## 常用的小程序组件的一些tip
+1.`textarea、map、canvas、video` 这四个组件是客户端的原生组件，层级最高，不能通过z-index控制层级
+2.`scroll-view`中不能使用滚动无法触发无法触发 `onPullDownRefresh` 事件，`scroll-view`中也不能使用1中的四个客户端原生组件
+3.除了文本节点`<text>`以外的其他节点都无法长按选中
+4.如果需要发送[模板消息](https://developers.weixin.qq.com/miniprogram/dev/api/notice.html)，需要在form表单中设置`report-submit`属性为true，收集`formId`
+5.input组件是native组件，字体是系统字体，无法设置 `font-family`
+
 
 ## 使用wepy-redux进行数据管理
-
 wepy支持使用`wepy-redux`来进行数据状态管理，在脚手架init的时候会询问用户是否使用`redux`，同意即可。`wepy-redux`主要用`connect(states, actions)`来连接组件和`store`，具体用法可以参考[wepy-redux文档](https://www.npmjs.com/package/wepy-redux)和脚手架init出来的demo；
-
 wepy使用`redux-actions`来创建`action`，让`action`书写起来更加友好，具体使用方法也可以参考[wepy-actions文档](https://redux-actions.js.org/docs/api/)和脚手架init出来的demo
 
 
 ## 小程序登录逻辑
-
 小程序的登录逻辑是比较通用的但是流程比较复杂，这里贴一下我们项目中的登录逻辑
 <img src="https://cdn.meishakeji.com/frontend-blog/img/wepy-quick-start@02.png"/>
 
