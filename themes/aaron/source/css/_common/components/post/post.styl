@@ -33,6 +33,17 @@
   transform: rotate(30deg);
 }
 
+.post-body details {
+ summary {
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+ }
+ > br {
+  display: none;
+ }
+}
+
 @import "post-expand";
 @import "post-collapse";
 @import "post-type";

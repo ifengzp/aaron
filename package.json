@@ -6,7 +6,7 @@
     "version": "3.8.0"
   },
   "scripts": {
-    "dev": "hexo server"
+    "dev": "hexo server --draft"
   },
   "dependencies": {
     "generator-hexo-theme": "^0.6.0",
