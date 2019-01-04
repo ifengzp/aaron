@@ -4,7 +4,7 @@
 
 # Site
 title: Aaron
-subtitle: "纸上得来终觉浅，绝知此事要躬行"
+subtitle: ""
 description:
 keywords: web
 author: Aaron
@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://www.orlearn.cn
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -79,5 +79,5 @@ theme: aaron
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/ifengzp/ifengzp.github.io.git
-  branch: master
+  repo: https://github.com/ifengzp/aaron.git
+  branch: gh-pages
