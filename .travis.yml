@@ -1,0 +1,33 @@
+language: node_js
+node_js:
+- '8'
+
+branches:
+  only:
+    - dev
+
+env:
+  global:
+    secure: J69SLzvPyeVS90+q0A5CFze6RnF112iVUKtHM1O16p0h0s7ys49XkmDNt2o/IW1UNY7NjqTNbQMI6Zp8PmjXOWjdxH0EF/zYNjoXWr4NhpWj2P6SHG02fvxVmWcIznyPhfJe6isX6hWmxtD/uiGqeGiY6SfGUmyXb9+yCjA8qmpaY0OFvafWt1eURIdmp3Ea6kLkjztJ8AddAZrsLNhLMIvYzX6kxxEQ8+n40RwJ/EeBLwtGHtUVslCZM+NiL7k9umrmMbv2RXpvbSi6VVn0J/uyKSVFC2/Z0Fr9xQF7/KjpRuR7NaK8O/OdDqRRbSBXjVFfgFJEHkwJNF/DnMjUi1KgbWd2i4RL64RDuQxuBlNFLGLunLBpcA4TaKDYGXBsGI/YidNIGQdFe14IRoi2xMBhTQZMPVKT9l+PhdSv+RsCI421s3GMnT+8wW3Za5wOfPnFrlexVMetWIqq9nh3/vh+5ngs2Wa1+Yj3GSmehIUmh2n0oRBWkLxrkZ2rKcfiNhlphRzvVZD4AxbXW6NgKvczUJ25dWgTg4X0jhaIJPOGRExfEWfgdYlrJ2uQcYCJ40o5O2sJeXPQjCMd0YzlkcSx+j0CRp2vKntuLEOe122GfWiptImRaBoDYZRhDo94mvYvK0VTI08MFDM4EJ8AQMF9mWeBUuXCyiwqKMGD0k4=
+
+cache:
+  directories:
+    - node_modules
+
+before_install:
+- openssl aes-256-cbc -K $encrypted_1859c42b93ef_key -iv $encrypted_1859c42b93ef_iv -in id_rsa.enc -out id_rsa -d
+- git config --global user.name 'aaron'
+- git config --global user.email aaron@meishakeji.com
+
+install:
+  - yarn install
+
+script:
+- yarn run deploy
+
+notifications:
+  email:
+    recipients: aaron@meishakeji.com
+    on_success: always
+    on_failure: always
+
