@@ -24,7 +24,7 @@ before_install:
 - git config --global user.email ifengzp@163.com
 
 after_success:
-  - ssh aaron@47.100.116.66 -p 39999
+  - ssh aaron@47.100.116.66 -p 39999 -o StrictHostKeyChecking=no
 
 addons:
   ssh_known_hosts: 47.100.116.66
