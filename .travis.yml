@@ -29,8 +29,8 @@ before_install:
 after_success:
   - ssh aaron@${IP} -p ${PORT} -o StrictHostKeyChecking=no
   - cd ${PROJECT}
-  - git checkout gh-pages
-  - git pull
+  - git fetch --all
+  - git reset --hard origin/gh-pages
 
 install:
   - yarn install
