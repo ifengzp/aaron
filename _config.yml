@@ -102,3 +102,9 @@ live2d:
     show: true
   react:
     opacityDefault: 1
+
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 1000

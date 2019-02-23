@@ -6,21 +6,21 @@ tags:
 - 小程序
 ---
 
-公司最近需要快速开发多个小程序，为了尽量减少大家的上手时间，我们决定使用使用wepy框架来进行小程序开发。作为一个初次接触小程序并且不是使用原生小程序框架来开发的新手，我建议大家要熟读[小程序官方文档](https://developers.weixin.qq.com/miniprogram/dev/)，熟悉小程序的逻辑层配置，熟悉小程序的API，熟悉小程序的组件，因为小程序本身的限制，文档里面有很多tip和注意事项，官方都给出了标注和避免的方法，如果没有仔细查看文档很容易在实际操作中踩坑
+公司最近需要快速开发多个小程序，为了尽量减少大家的上手时间，我们决定使用使用wepy框架来进行小程序开发。作为一个初次接触小程序并且不是使用原生小程序框架来开发的新手，我建议大家要熟读[小程序官方文档](https://developers.weixin.qq.com/miniprogram/dev/)，熟悉小程序的逻辑层配置，熟悉小程序的API，熟悉小程序的组件，因为小程序本身的限制，文档里面有很多tip和注意事项，官方都给出了标注和避免的方法，如果没有仔细查看文档很容易在实际操作中踩坑
 <!-- more -->
 
 ## Vscode代码高亮设置
-我们公司前端使用的IDE是Vscode，首先要设置代码高亮，对于`.wpy`文件，设置方法如下：
+我们公司前端使用的IDE是Vscode，首先要设置代码高亮，对于`.wpy`文件，设置方法如下：
 1.在 Code 里先安装 Vue 的语法高亮插件 `Vetur`。
 2.把.wpy 关联的语言模式选择为 Vue。
-3.因为wepy有自己的标签和像素单位， `Vetur`会根据vue的规则当成错误来提示，mac下使用快捷键 `⌘ ,`，打开工作区设置，粘贴下面的规则，把Vue的`template`和`style`校验关掉
+3.因为wepy有自己的标签和像素单位， `Vetur`会根据vue的规则当成错误来提示，mac下使用快捷键 `⌘ ,`，打开工作区设置，粘贴下面的规则，把Vue的`template`和`style`校验关掉
 ```json
 {
   "vetur.validation.style": false,
   "vetur.validation.template": false
 }
 ```
-另外`.wxs`文件直接关联为`js`，如果是使用原生小程序开发，`.wxml`文件关联为`html`，`wxss`文件关联为`css`
+另外`.wxs`文件直接关联为`js`，如果是使用原生小程序开发，`.wxml`文件关联为`html`，`wxss`文件关联为`css`
 
 
 ## 微信开发者工具配置
@@ -67,7 +67,7 @@ this.setData({title: 'this is title'});
 // wepy直接赋值即可
 this.title = 'this is title';
 
-// 但是wepy在异步函数中更新数据要手动调用$apply
+// 但是wepy在异步函数中更新数据要手动调用$apply
 setTimeout(() => {
     this.title = 'this is title';
     this.$apply();
@@ -159,18 +159,18 @@ export default class Text extends wepy.component {
 
 ## 常用的小程序组件的一些tip
 1.`textarea、map、canvas、video` 这四个组件是客户端的原生组件，层级最高，不能通过z-index控制层级
-2.`scroll-view`中不能使用滚动无法触发无法触发 `onPullDownRefresh` 事件，`scroll-view`中也不能使用1中的四个客户端原生组件
+2.`scroll-view`中不能使用滚动无法触发无法触发 `onPullDownRefresh` 事件，`scroll-view`中也不能使用1中的四个客户端原生组件
 3.除了文本节点`<text>`以外的其他节点都无法长按选中
 4.如果需要发送[模板消息](https://developers.weixin.qq.com/miniprogram/dev/api/notice.html)，需要在form表单中设置`report-submit`属性为true，收集`formId`
 5.input组件是native组件，字体是系统字体，无法设置 `font-family`
 
 
 ## 使用wepy-redux进行数据管理
-wepy支持使用`wepy-redux`来进行数据状态管理，在脚手架init的时候会询问用户是否使用`redux`，同意即可。`wepy-redux`主要用`connect(states, actions)`来连接组件和`store`，具体用法可以参考[wepy-redux文档](https://www.npmjs.com/package/wepy-redux)和脚手架init出来的demo；
-wepy使用`redux-actions`来创建`action`，让`action`书写起来更加友好，具体使用方法也可以参考[wepy-actions文档](https://redux-actions.js.org/docs/api/)和脚手架init出来的demo
+wepy支持使用`wepy-redux`来进行数据状态管理，在脚手架init的时候会询问用户是否使用`redux`，同意即可。`wepy-redux`主要用`connect(states, actions)`来连接组件和`store`，具体用法可以参考[wepy-redux文档](https://www.npmjs.com/package/wepy-redux)和脚手架init出来的demo；
+wepy使用`redux-actions`来创建`action`，让`action`书写起来更加友好，具体使用方法也可以参考[wepy-actions文档](https://redux-actions.js.org/docs/api/)和脚手架init出来的demo
 
 
 ## 小程序登录逻辑
-小程序的登录逻辑是比较通用的但是流程比较复杂，这里贴一下我们项目中的登录逻辑
+小程序的登录逻辑是比较通用的但是流程比较复杂，这里贴一下我们项目中的登录逻辑
 <img src="https://cdn.meishakeji.com/frontend-blog/img/wepy-quick-start@02.png"/>
 
