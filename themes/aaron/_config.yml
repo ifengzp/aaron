@@ -670,15 +670,15 @@ version: 5.1.2
 # Introduction: https://imsun.net/posts/gitment-introduction/
 # You can get your Github ID from https://api.github.com/users/<Github username>
 gitment:
-  enable: true
+  enable: false
   mint: true # RECOMMEND, A mint on Gitment, to support count, language and proxy_gateway
   count: true # Show comments count in post meta area
   lazy: false # Comments lazy loading with a button
   cleanly: false # Hide 'Powered by ...' on footer, and more
   github_user: ifengzp
   github_repo: aaron
-  client_id: eaf458106bab01337df0
-  client_secret: f6cec48965360a7ead8bb679cf2d4d55fb3bf5d5
+  client_id: 
+  client_secret: 
   proxy_gateway: # Address of api proxy, See: https://github.com/aimingoo/intersect
   redirect_protocol: # Protocol of redirect_uri with force_redirect_protocol when mint enabled
 
