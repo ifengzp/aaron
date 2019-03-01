@@ -6,7 +6,10 @@ var babel = require('gulp-babel');
 
 gulp.task('minify-css', () => {
     return gulp.src('./public/**/*.css')
-        .pipe(cleanCSS({compatibility: 'ie8'}))
+        .pipe(cleanCSS({
+          compatibility: 'ie8',
+          rebase: false
+        }))
         .pipe(gulp.dest('./public'));
 });
 
@@ -23,7 +26,13 @@ gulp.task('minify-html', () => {
 
 gulp.task('minify-js', function () {
     return gulp.src(['./public/**/*.js', '!./public/**/*.min.js'])
-        .pipe(babel())
+        .pipe(babel({
+          ignore: [
+            './public/**/jquery/*.js',
+            './public/**/scrollspy.js',
+            './public/**/affix.js',
+          ]
+        }))
         .pipe(uglify())
         .pipe(gulp.dest('./public'));
 });
