@@ -1,0 +1,53 @@
+---
+title: js求最佳基因配对率
+date: 2019-01-30 00:32:04
+tags:
+- 算法
+- 项目小结
+---
+
+给出一个长度为10的由基因“ATGC”随机组成的参照字符串，然后再给出一个长度为6的可操作基因字符串，可操作字符串的字符顺序不能变，但是可以移动其位置，求移动字符串和参照字符串的最大配对率
+<!-- more -->
+
+# 题目来源
+项目中的一个”基因“配对小游戏，如下：
+![](http://qiniu.orlearn.cn/genematchingrate/gene_move.gif)
+按上图中给出的例子：
+- 参考碱基序列为：`GGACCCATTC`
+- 可顺序移动碱基序列为：`TACAGT****`
+- 其中`*`可移动，匹配率 = 符合配对规则的字母个数 / 总字母个数
+- 当可移动碱基的位置为`*TAC**AGT*`时有和参考序列有4个碱基匹配，此时匹配率为：4/10，是最优匹配率
+
+# 全组合
+为了尽可能快地完成迭代，项目中采取了全组合的方法，把所有情况列举出来，然后对比，取匹配率最高的一种情况作为答案。 转换一下就知道，题目等于是有10个位置，任意取四个放空白碱基，一共有`C(10,4) = 10!/(4! * 6!) = 10 * 9 * 8 * 7 / (1 * 2 * 3 * 4) = 210`种情况，代码如下：
+
+```js
+function toCalculateBestPairingRatio() {
+    const contrastGene = 'GGACCCATTC'.split('');
+    const gene = 'TACAGT'.split('');
+    let tempGene, curNum = 0;
+    let bestPairingRate = {
+        rate: 0,
+        arrangement: ''
+    };
+    for (let i = 0; i < 10; i++) {
+        for (let j = i + 1; j < 10; j++) {
+            for (let k = j + 1; k < 10; k++) {
+                for (let l = k + 1; l < 10; l++) {
+                    tempGene = [...gene];
+                    tempGene.splice(i, 0, '');
+                    tempGene.splice(j, 0, '');
+                    tempGene.splice(k, 0, '');
+                    tempGene.splice(l, 0, '');
+                    curNum = contrastGene.reduce((acc, cur, index) => acc + (cur === tempGene[index]), 0);
+                    if (curNum >= bestPairingRate.rate) {
+                        bestPairingRate.rate = curNum;
+                        bestPairingRate.arrangement = tempGene;
+                    }
+                }
+            }
+        }
+    }
+    return bestPairingRate;
+}
+```

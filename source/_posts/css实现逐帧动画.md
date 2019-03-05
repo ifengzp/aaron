@@ -1,5 +1,5 @@
 ---
-title: css3 animation实现逐帧动画
+title: css实现逐帧动画
 date: 2016-06-01 11:55:00
 tags: css
 ---
