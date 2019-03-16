@@ -113,3 +113,14 @@ sitemap:
   path: sitemap.xml
 baidusitemap:
   path: baidusitemap.xml
+
+# Beian icp information for Chinese users. In China, every legal website should have a beian icp in website footer.
+# http://www.miitbeian.gov.cn
+beian:
+ enable: true
+ icp: 粤ICP备 - 19015498
+# 公安网备案 for Chinese users. local mean 京 or 赣 
+gongan:
+ enable: false
+ local: 赣
+ num: 36010202000154
