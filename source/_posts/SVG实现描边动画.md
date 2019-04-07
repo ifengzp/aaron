@@ -8,19 +8,19 @@ tags: css
 <!-- more -->
 
 先上效果图：
-![](http://qiniu.orlearn.cn/svg/svg_dash_animate_01.gif)
+![](http://cdn.blog.ifengzp.com/svg/svg_dash_animate_01.gif)
 思路：要实现这种动画，我们要使用的是SVG的路径path标签，其中然后配合两个属性：stroke-dasharray和stroke-dashoffset，至于用什么方式实现动画效果就八仙过海了，我这里使用的是css3的animation
 
 # 第一步：了解SVG的path
 中文的意思就是路径，描边动画嘛，你得先给个路线我才能描边啊，路径就是这个路线：
-![](http://qiniu.orlearn.cn/svg/svg_dash_animate_02.png)
+![](http://cdn.blog.ifengzp.com/svg/svg_dash_animate_02.png)
 先上网找个图片，放进AI里面，然后用钢笔勾勒路径，再把图片删掉，剩下路径，把它另存为svg，然后把它拖进编译器里，就能看到一堆代码，我们只要保留其中的path就好（不会用AI的给你个理由去勾搭设计师美眉）
 
 # 第二步：了解stroke-dasharray和stroke-dashoffset
 理解字面意思就好：
 stroke-dasharray：就是把线条断开为虚线，下图就是我把stroke-dasharray设置为10的效果，它就变成虚线了，数值越大，线就越长
 stroke-dashoffset：就是设置线条的偏移，设置了这个值后，线段就会偏移相应的值，我们要实现动画只要动态改变这个偏移值就好，那样线条就会动起来了
-![](http://qiniu.orlearn.cn/svg/svg_dash_animate_03.png)
+![](http://cdn.blog.ifengzp.com/svg/svg_dash_animate_03.png)
 
 
 # 第三步：利用@keyframes实现动态描边
@@ -36,9 +36,9 @@ stroke-dashoffset：就是设置线条的偏移，设置了这个值后，线段
 	}
 }
 ```
-![](http://qiniu.orlearn.cn/svg/svg_dash_animate_04.gif)
+![](http://cdn.blog.ifengzp.com/svg/svg_dash_animate_04.gif)
 额~~有点快，没关系，明白意思就好，最后，描边完成之后再插入一个动画，让背景图片淡入，最终效果如下：
-![](http://qiniu.orlearn.cn/svg/svg_dash_animate_05.gif)
+![](http://cdn.blog.ifengzp.com/svg/svg_dash_animate_05.gif)
 下班了，不调了，如果再慢点效果估计更好
 
 <details>

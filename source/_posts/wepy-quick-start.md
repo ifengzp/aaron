@@ -28,7 +28,7 @@ tags:
 2.微信开发者工具--> 项目 --> 项目设置中，取消勾选ES6 转 ES5，上传代码时样式自动补全，代码上传时自动压缩
 3.微信开发者工具--> 项目 --> 项目设置中，勾选不校验合法域名、web-view（业务域名）、TLS 版本以及 HTTPS 证书
 4.开发过程中，可以通过自定义编译，自定义场景值快速进入到某个页面开发
-<img src="http://qiniu.orlearn.cn/wepy/wepy-quick-start@01.png" width="500"/>
+<img src="http://cdn.blog.ifengzp.com/wepy/wepy-quick-start@01.png" width="500"/>
 
 
 ## 启动项目及项目结构
@@ -172,5 +172,5 @@ wepy使用`redux-actions`来创建`action`，让`action`书写起来更加友好
 
 ## 小程序登录逻辑
 小程序的登录逻辑是比较通用的但是流程比较复杂，这里贴一下我们项目中的登录逻辑
-<img src="http://qiniu.orlearn.cn/wepy/wepy-quick-start@02.png"/>
+<img src="http://cdn.blog.ifengzp.com/wepy/wepy-quick-start@02.png"/>
 
