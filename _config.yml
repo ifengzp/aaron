@@ -121,6 +121,6 @@ beian:
  icp: 粤ICP备 - 19015498
 # 公安网备案 for Chinese users. local mean 京 or 赣 
 gongan:
- enable: false
- local: 赣
- num: 36010202000154
+ enable: true
+ local: 粤
+ num: 44030502003894
