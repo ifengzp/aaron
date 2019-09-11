@@ -79,11 +79,11 @@ theme: aaron
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:ifengzp/aaron.git
+  repo: git@github.com:ifengzp/ifengzp.github.io.git
   branch: master
 
 live2d:
-  enable: true
+  enable: false
   scriptFrom: local
   pluginRootPath: live2dw/
   pluginJsPath: lib/
@@ -99,7 +99,7 @@ live2d:
     vOffset: 0
     hOffset: -40
   mobile:
-    show: true
+    show: false
   react:
     opacityDefault: 1
 
