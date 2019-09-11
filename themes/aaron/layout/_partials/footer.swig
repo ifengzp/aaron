@@ -28,7 +28,7 @@
 	{% if config.gongan.enable %}
 		{{' | '}}
 		<span style="padding-left:25px;background:url(https://s1.ax1x.com/2018/09/29/ilmwIH.png) no-repeat left center" rel="nofollow">
-		<a class="theme-link" href="'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode='+config.gongan.num">
+		<a class="theme-link" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030502003894">
 			{{ config.gongan.local+'公网安备'+config.gongan.num+'号' }}
 		</a>
 		</span>
