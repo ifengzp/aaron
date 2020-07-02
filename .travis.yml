@@ -30,7 +30,7 @@ after_success:
   - ssh aaron@${IP} -p ${PORT} -o StrictHostKeyChecking=no
   - cd ${PROJECT}
   - git fetch --all
-  - git reset --hard origin/gh-pages
+  - git reset --hard origin/master
 
 install:
   - yarn install

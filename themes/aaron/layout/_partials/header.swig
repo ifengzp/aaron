@@ -48,6 +48,20 @@
           </a>
         </li>
       {% endfor %}
+        <li class="menu-item">
+            <a href="http://blog.ifengzp.com/vue-review/" target="_black" rel="section">
+                <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+                vue-review
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="http://blog.ifengzp.com/element-ui-review/" target="_black" rel="section">
+                <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+                element-ui-review
+            </a>
+        </li>
+
+
 
       {% if hasSearch %}
         <li class="menu-item menu-item-search">
