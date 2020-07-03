@@ -1,0 +1,13 @@
+CACHE MANIFEST
+# 2012-02-21 v1.0.0
+# 离线缓存的文件
+/live2dw/assets/moc/hijiki.moc
+/css/main.css
+
+# 永远不会被缓存的文件，且离线时是不可用的，默认其他所有文件都要联网
+NETWORK:
+*
+
+# 断网时的替补资源，第一个第URI，第二个是替换的地址
+# FALLBACK:
+# /html/ /offline.html

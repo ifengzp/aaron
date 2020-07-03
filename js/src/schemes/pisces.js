@@ -1,0 +1,1 @@
+"use strict";$(document).ready(function(){var n=$(".header-inner"),e=$("#sidebar"),t=function(){return n.height()+CONFIG.sidebar.offset},i=function(n){return e.css({"margin-top":n})},r=window.matchMedia("(min-width: 991px)");i(t()).show(),r.addListener(function(n){n.matches&&i(t())})});

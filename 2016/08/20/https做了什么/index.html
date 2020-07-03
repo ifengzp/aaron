@@ -1,0 +1,314 @@
+<!DOCTYPE html><html class="theme-next pisces" lang="zh-Hans" manifest="config/blog.appcache"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css"><meta name="keywords" content="css,"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2"><meta name="description" content="主要理解下面两点： 1.http和https的区别；2.https具体解决了那些问题"><meta name="keywords" content="css"><meta property="og:type" content="article"><meta property="og:title" content="css实现逐帧动画"><meta property="og:url" content="http://blog.ifengzp.com/2016/08/20/https做了什么/index.html"><meta property="og:site_name" content="冯振鹏"><meta property="og:description" content="主要理解下面两点： 1.http和https的区别；2.https具体解决了那些问题"><meta property="og:locale" content="zh-Hans"><meta property="og:updated_time" content="2020-07-03T01:55:15.571Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="css实现逐帧动画"><meta name="twitter:description" content="主要理解下面两点： 1.http和https的区别；2.https具体解决了那些问题"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Pisces",sidebar:{position:"left",display:"post",offset:12,offset_float:12,b2t:!0,scrollpercent:!0,onmobile:!1},fancybox:!0,tabs:!0,motion:!1,duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://blog.ifengzp.com/2016/08/20/https做了什么/"><title>css实现逐帧动画 | 冯振鹏</title><script type="text/javascript">var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?0f8699f0c2e5db4acb9dfb2ca2199dac";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script></head><body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">冯振鹏</span> <span class="logo-line-after"><i></i></span></a></div><h1 class="site-subtitle" itemprop="description"></h1></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item"><a href="http://blog.ifengzp.com/vue-review/" target="_black" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i><br>vue-review</a></li><li class="menu-item"><a href="http://blog.ifengzp.com/element-ui-review/" target="_black" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i><br>element-ui-review</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://blog.ifengzp.com/2016/08/20/https做了什么/"><span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person"><meta itemprop="name" content="冯振鹏"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.jpg"></span><span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization"><meta itemprop="name" content="冯振鹏"></span><header class="post-header"><h2 class="post-title" itemprop="name headline">css实现逐帧动画</h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-20T11:55:00+00:00">2016-08-20 </time></span><span class="post-meta-divider">|</span> <span class="page-pv"><i class="fa fa-file-o"></i> <span class="busuanzi-value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body" itemprop="articleBody"><p>主要理解下面两点： 1.http和https的区别；2.https具体解决了那些问题<br><a id="more"></a></p><h1 id="HTTP都有哪些问题"><a href="#HTTP都有哪些问题" class="headerlink" title="HTTP都有哪些问题"></a>HTTP都有哪些问题</h1><p>HTTP最大的问题就是数据没有加密和通信双方不能互相验证身份，对应以下场景👇</p><ul><li><strong>信息泄露</strong>。HTTP是可以被拦截的，假如你的上网方式被人家控制了（比如连接匿名WiFi），那你的所有信息都有可能被拦截到</li><li><strong>网站劫持</strong>。很常见的就是被运营商的广告劫持了，当我们上一个网站的时候莫名其妙地弹出一个广告（这个广告并不是这个网站的），这就是因为我们访问的页面被运营商劫持，加入了他自己的东西</li></ul><h1 id="HTTPS如何解决问题"><a href="#HTTPS如何解决问题" class="headerlink" title="HTTPS如何解决问题"></a>HTTPS如何解决问题</h1><p>先从加密说起：HTTP没有加密信息，中间人拦截之后就可以知道传输的信息了，比如当你登录的时候把账目和密码通过网络传输，如果手机是接入了被监控的WIFI，那敏感信息就可以被拦截了</p><hr><p>1️⃣第一种加密信息尝试：对称加密</p><p>客户端和服务器都有一把一样的钥匙，传输的时候先加密，这样子别人拦截到的信息是加密之后的，他没有钥匙无法解密信息。但是不可能钥匙永远都是一把，如果一方保管不善，泄密了就完了。所以最好的做法就是每一次传输都生成一把钥匙。信息传输之前，先让客户端和服务器先碰一下头，交换彼此的钥匙，然后用钥匙加密之后再传输数据。但是钥匙也是直接传输的，被劫持之后也凉了</p><p>2️⃣第二种加密信息尝试：非对称加密</p><p>服务器有一把自己的钥匙叫做私钥，然后客户端也有一把钥匙叫做公钥，公钥是公开的，所有人都知道。<strong>私钥加密的信息公钥都可以解密，公钥加密的信息只有私钥才能解密</strong>，这样就保证了只有服务器才能拿到传输的信息</p><p>过程如下：</p><ul><li>客户端向服务器要公钥</li><li>服务器给出公钥</li><li>客户端利用公钥加密数据传给服务器</li><li>服务器利用私钥解密数据，然后把返回的数据用私钥加密</li><li>客户端拿到加密数据用公钥解密</li></ul><p>问题出在第二步，客户端如何确定自己拿到的公钥，真的就是是自己服务器生成的公钥？中间人也可以搞一套，自己生成一个公钥给客户端，然后自己发一个请求去服务器要一个公钥，客户端利用中间人的公钥加密数据传输，中间人用自己的私钥解密之后，再用服务器的公钥加密传给服务器，然后拿到服务器返回的数据，再把这个数据传给客户端，这样一来，所有的信息也还是经过了中间人，也凉了</p><p>3️⃣确保拿到的公钥是自己服务器生成的公钥</p><p>举例，你去坐高铁的时候如何证明你是你？答案是用公安局身份证。客户端在拿到传送过来的公钥的时候让服务器把自己的身份证出示一下，这个身份证就是<strong>服务器CA证书。</strong>让自己的服务器去公安局那里拿一个身份证，上面有服务器的一些信息，比如域名，过期时间等，客户端收到服务器发过来的CA证书的时候，我只要核对CA证书的真伪，那我就知道我能不能信赖你</p><p>4️⃣那客户端如何校验服务器发过来的CA证书的真伪？</p><p>举个例子，在你请假的时候让你的领导在请假条上签一个名，当HR看到假条上签名的时候就知道领导同意你请假了，CA证书的真伪也可以通过计算机的数字化签名来实现。下面也是通过非对称加密来生成签名和解密签名：</p><ul><li>服务器将自己的域名、IP等信息提交给 CA 审查</li><li>CA 审查无误，使用私钥把服务器信息的摘要加密，生成的密文就是所谓签名</li><li>CA 把服务器的信息、签名、有效期等信息集合到一张证书上，颁发给服务器</li><li>服务器每次发信息的时候把自己的CA证书也传给客户端</li><li>客户端收到服务器发送的证书后，使用CA的公钥解密签名，获得服务器信息的摘要，如果和证书上记录的服务器信息的摘要一致，说明服务器信息是经过CA认可的</li></ul><p>5️⃣那客户端如何解密CA证书？</p><p>来自浏览器，全球的CA证书颁发机构就那几家，公钥都直接预装在浏览器上了</p><h1 id="HTTPS的数据传输过程"><a href="#HTTPS的数据传输过程" class="headerlink" title="HTTPS的数据传输过程"></a><strong>HTTPS的数据传输过程</strong></h1><p>前期准备工作：</p><ul><li>客户端（操作系统/浏览器） 自带了CA根证书（解密签名的公钥）</li><li>服务器自己去机构里领取一张带有数字签名的CA证书</li></ul><p>每一次数据传输的过程：</p><ul><li>客户端要发数据前去服务器那里要公钥+CA证书</li><li>服务器返回本次传输的公钥和服务器自己的CA证书</li><li>客户端用自己的CA公钥去解密传过来的CA证书的签名，解密出来的信息和证书上的信息一致，那就说明送过来的公钥是自己服务器上的公钥，可以信赖这个公钥</li><li>客户端用公钥加密数据传给服务器</li><li>服务器用私钥去解密信息，然后把返回信息用私钥加密传回去</li><li>客户端用公钥解密返回的数据，整个传输过程完成</li></ul></div><footer class="post-footer"><div class="post-tags"><a href="/tags/css/" rel="tag"># css</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2016/06/06/SVG实现描边动画/" rel="next" title="SVG实现描边动画"><i class="fa fa-chevron-left"></i> SVG实现描边动画</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/2018/04/17/wepy-quick-start/" rel="prev" title="使用wepy快速上手开发小程序">使用wepy快速上手开发小程序 <i class="fa fa-chevron-right"></i></a></div></div></footer></div></article><div class="post-spread"></div></div></div><div class="comments" id="comments"></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview">站点概览</li></ul><section class="site-overview sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="冯振鹏"><p class="site-author-name" itemprop="name">冯振鹏</p><p class="site-description motion-element" itemprop="description"></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">10</span> <span class="site-state-item-name">文章</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">13</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/ifengzp" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub </a></span><span class="links-of-author-item"><a href="mailto:ifengzp@163.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i> E-Mail</a></span></div></section><!--noindex--><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP都有哪些问题"><span class="nav-number">1.</span> <span class="nav-text">HTTP都有哪些问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTPS如何解决问题"><span class="nav-number">2.</span> <span class="nav-text">HTTPS如何解决问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTPS的数据传输过程"><span class="nav-number">3.</span> <span class="nav-text">HTTPS的数据传输过程</span></a></li></ol></div></div></section><!--/noindex--><div class="back-to-top"><i class="fa fa-arrow-up"></i> <span id="scrollpercent"><span>0</span>%</span></div></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright">&copy; 2018 - <span itemprop="copyrightYear">2020</span> <span class="with-love"><i class="fa fa-false"></i> </span><span class="author" itemprop="copyrightHolder">冯振鹏</span></div><div class="beian"><a class="theme-link" href="http://www.miitbeian.gov.cn">粤ICP备 - 19015498</a> | <span style="padding-left:25px;background:url(https://s1.ax1x.com/2018/09/29/ilmwIH.png) no-repeat left center" rel="nofollow"><a class="theme-link" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44030502003894">粤公网安备44030502003894号</a></span></div><div class="busuanzi-count"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span class="site-uv"><i class="fa fa-user"></i> <span class="busuanzi-value" id="busuanzi_value_site_uv"></span> </span><span class="site-pv"><i class="fa fa-eye"></i> <span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span></div></div></footer></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><script type="text/javascript">// Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });</script></body></html>
